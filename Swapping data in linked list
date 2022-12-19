@@ -1,0 +1,119 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node*next;
+    struct node*prev;
+};
+
+struct node *start=NULL,*newnode,*ptr,*ptr1,*ptr2;
+struct node *create_ll(struct node*);
+struct node *display(struct node*);
+struct node*count_and_swap(struct node*);
+int num,i;
+
+int main()//main 
+{
+    int option;
+    do
+    {
+        printf("\nMain menu\n");
+        printf("1.create LL\n");
+        printf("2.Display\n");
+        printf("3.swap\n");
+        printf("4.EXIT\n");
+        printf("enter your option\n");
+        scanf("%d",&option);
+        switch(option)
+        {
+            case 1:
+            start=create_LL(start);
+            break;
+            case 2:
+            start=display(start);
+            break;
+            case 3:
+            start=count_and_swap(start);
+            break;
+        }
+    }while(option!=4);
+    return 0;
+}
+
+struct node*create_LL(struct node* start)
+{
+    printf("enter data\n");
+    scanf("%d",&num);
+    while(num!=-1)
+    {
+        newnode=(struct node*)malloc(sizeof(struct node));
+        newnode->data=num;
+        newnode->next=NULL;
+        
+        if(start==NULL)
+        {
+            start=newnode;
+            newnode->prev=NULL;
+        }
+        else
+        {
+            ptr=start;
+            while(ptr->next!=NULL)
+            {
+                ptr=ptr->next;
+            }
+            ptr->next=newnode;
+            newnode->prev=ptr;
+        }
+        printf("enter data\n");
+        scanf("%d",&num);
+    }
+    return start;
+
+}
+
+struct node*display(struct node*start)
+{
+    ptr=start;
+    printf("\nthe created linked list is:\n");
+    while(ptr!=NULL)
+    {
+        printf("%d\t",ptr->data);
+        ptr=ptr->next;
+    }
+    return start;
+}
+
+struct node*count_and_swap(struct node*start)
+{
+    int temp,n=0;
+    ptr=start;
+    while (ptr!=NULL)//to count nodes
+    {
+        n++;
+        ptr=ptr->next;
+    }
+    printf("\nthe count is %d\n",n);
+    ptr=start;
+    while(ptr->next!=NULL)//to assign for ptr2
+    {
+        ptr=ptr->next;
+    }
+    ptr2=ptr;
+    ptr1=start;
+    
+    for(i=0;i<n/2;i++)//for swapping
+    {
+        temp=ptr1->data;
+        ptr1->data=ptr2->data;
+        ptr2->data=temp;
+        ptr1=ptr1->next;
+        ptr2=ptr2->prev; 
+    }
+    
+
+    return start;
+    
+}
+
