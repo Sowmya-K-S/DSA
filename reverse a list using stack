@@ -1,0 +1,52 @@
+#include<stdio.h>
+#define MAX 10
+int b[MAX],top=-1;
+void main()
+{
+    int i,a[20],n;
+    printf("enter how many array elements\n");
+    scanf("%d",&n);
+    printf("enter %d array elements\n",n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    printf("\nthe array before reversing\n");
+     for(i=0;i<11;i++)
+    {
+        printf("%d\t",a[i]);
+    }
+
+    for(i=0;i<11;i++)
+    {
+        int val;
+        val=a[i];
+        if(top==MAX-1)
+        {
+            printf("\nOVERFLOW\n");
+            break;
+        }
+
+        top++;
+        b[top]=val;
+    }
+    for(i=0;i<10;i++)
+    {
+        int val;
+        /*if(top==-1)
+        {
+            printf("UNDERFLOW");
+            break;
+        }*/
+        val=b[top];
+        top--;
+        a[i]=val;
+
+    }
+    printf("\nthe array after reversing\n");
+    for(i=0;i<10;i++)
+    {
+        printf("%d\t",a[i]);
+    }
+
+}
